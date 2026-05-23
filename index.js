@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose"
 import Product from "./model/Product.js"; 
+import dotenv from "dotenv"
+
+dotenv.config();
 
 
 const app = express();
@@ -11,7 +14,7 @@ app.use(express.json());
 
 async function connectDB(){
     try{
-        await mongoose.connect("mongodb+srv://junaid:junaidjunaid@cluster0.jj6aivp.mongodb.net/");
+        await mongoose.connect(process.env.MONGO_URI);
         console.log("Databse connected!")
     }
     catch (error){
